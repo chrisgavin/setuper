@@ -8,7 +8,7 @@ def main():
 		raise SystemExit("setuper requires at least Python 3.5.")
 	setuptools.setup(
 		name="setuper",
-		version="0.0.2",
+		version="0.0.3",
 		description="A Python module for installing the dependencies listed in a setuptools setup.py file.",
 		url="https://github.com/chrisgavin/setuper/",
 		packages=["setuper"],
