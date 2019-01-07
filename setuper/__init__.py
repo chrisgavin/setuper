@@ -17,4 +17,4 @@ def run(setup_path, pip_arguments="", remove_self=False, pip=[sys.executable, "-
 	spec.loader.exec_module(setup)
 
 	if remove_self:
-		subprocess.check_call(pip + ["uninstall", "setuper"])
+		subprocess.check_call(pip + ["uninstall", "--yes", "setuper"])
