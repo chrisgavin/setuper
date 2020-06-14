@@ -1,0 +1,31 @@
+name: "Test"
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python_version:
+          - 3.5
+          - 3.6
+          - 3.7
+          - 3.8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python_version }}
+      - name: Setup
+        run: pip install .[dev]
+      - name: Test
+        run: pytest
