@@ -4,11 +4,15 @@ import shlex
 import subprocess
 import sys
 
-def run(setup_path, pip_arguments="", remove_self=False, pip=[sys.executable, "-m", "pip"]):
+def run(setup_path, pip_arguments="", remove_self=False, pip=[sys.executable, "-m", "pip"], extras=[]):
 	pip_arguments = shlex.split(pip_arguments)
-	def setuptools_setup(install_requires=[], *args, **kwargs):
+	def setuptools_setup(install_requires=[], extras_require={}, *args, **kwargs):
 		requirements = []
 		requirements += install_requires
+		for extra in extras:
+			if extra not in extras_require:
+				raise SystemExit("No extra \"%s\" is known." % extra)
+			requirements += extras_require[extra]
 		subprocess.check_call(pip + ["install"] + requirements)
 	setuptools.setup = setuptools_setup
 
