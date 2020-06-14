@@ -10,7 +10,7 @@ def main():
 	argument_parser.add_argument("--extras", help="Comma separated categories of extras_require extras to install.")
 	arguments = argument_parser.parse_args()
 
-	setuper.run(arguments.setup_path, arguments.pip_arguments, arguments.remove_self, arguments.extras.split(","))
+	setuper.run(arguments.setup_path, pip_arguments=arguments.pip_arguments, remove_self=arguments.remove_self, extras=arguments.extras.split(","))
 
 if __name__ == "__main__":
 	main()
