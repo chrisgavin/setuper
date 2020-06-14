@@ -16,8 +16,8 @@ def _get_installed_packages(virtualenv_path):
 def test_test():
 	setup_path = pathlib.Path(__file__).parent / "resources" / "setup.py"
 	with tempfile.TemporaryDirectory("setuper_tests") as test_virtualenv:
-		virtualenv.create_environment(test_virtualenv)
 		virtualenv_path = pathlib.Path(test_virtualenv)
+		virtualenv.cli_run([str(virtualenv_path)])
 		initial_packages = _get_installed_packages(virtualenv_path)
 		setuper.run(setup_path, pip=[str(virtualenv_path / "bin" / "python"), "-m", "pip"])
 		final_packages = _get_installed_packages(virtualenv_path)

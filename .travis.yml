@@ -5,6 +5,7 @@ python:
 
 script:
   - pip install .[dev]
+  - pip install --upgrade virtualenv
   - pytest
 
 deploy:
